@@ -53,10 +53,6 @@ func SelectionSort(vals []int) {
 // Time: O(nlogn)
 // Space: O(logn)
 func Quicksort(vals []int) {
-	quicksort(vals)
-}
-
-func quicksort(vals []int) {
 	if len(vals) < 2 {
 		return
 	}
@@ -67,18 +63,18 @@ func quicksort(vals []int) {
 	vals[pivot], vals[len(vals)-1] = vals[len(vals)-1], vals[pivot]
 	pivot = len(vals) - 1
 
-	lastSmallest := 0
+	lastSmaller := 0
 	for idx, val := range vals {
 		if val < vals[pivot] {
-			vals[idx], vals[lastSmallest] = vals[lastSmallest], vals[idx]
-			lastSmallest++
+			vals[idx], vals[lastSmaller] = vals[lastSmaller], vals[idx]
+			lastSmaller++
 		}
 	}
 
-	vals[lastSmallest], vals[pivot] = vals[pivot], vals[lastSmallest]
+	vals[lastSmaller], vals[pivot] = vals[pivot], vals[lastSmaller]
 
-	quicksort(vals[:lastSmallest])
-	quicksort(vals[lastSmallest+1:])
+	Quicksort(vals[:lastSmaller])
+	Quicksort(vals[lastSmaller+1:])
 }
 
 // Mergesort sorts the slice `vals` with the
